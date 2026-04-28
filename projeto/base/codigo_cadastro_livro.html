@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BASE LIVRO</title>
+</head>
+<body>
+<center>
+    <h1>Olá, seja bem-vindo(a)!</h1>
+        <h2 style="color: brown;">Cadastre seu livro:</h2>
+
+            <p>Insira o título do livro:</p>
+                <input type="text" id="ipt_titulo">
+                    <br>
+            <p>Insira o Autor(a) do livro:</p>
+                <input type="text" id="ipt_autor">
+                    <br>
+                    <br>
+            <select id="sel_genero">
+                <option value="" disabled selected>Insira o gênero do livro</option>
+                <option value="romance">Romance</option>
+                <option value="fantasia">Fantasia</option>
+                <option value="scifi">Ficção Científica</option>
+                <option value="suspense">Aventura</option>
+                <option value="cronica">Crônica</option>
+                <option value="poesia">Poesia</option>
+                <option value="infantil">Infantil</option>
+                <option value="terror">Terror</option>
+            </select>
+                    <br>
+                    <br>
+            <select id="sel_status">
+                <option value="" disabled selected>Status de leitura</option>
+                <option value="querendo_ler">Querendo ler</option>
+                <option value="lendo">Lendo</option>
+                <option value="lido">Já li</option>
+            </select>
+                    <br>
+                    <br>
+            <button onclick="cadastro()">Cadastrar livro</button>
+                    <br>
+                    <br>
+            <div id="div_mensagem"></div>
+                    <br>
+                    <br>
+            <select id="sel_genero2">
+                <option value="" disabled selected>Insira o gênero do livro</option>
+                <option value="Romance">Romance</option>
+                <option value="Fantasia">Fantasia</option>
+                <option value="Ficção Científica">Ficção Científica</option>
+                <option value="Aventura">Aventura</option>
+                <option value="Crônica">Crônica</option>
+                <option value="Poesia">Poesia</option>
+                <option value="Infantil">Infantil</option>
+                <option value="Terror">Terror</option>
+            </select>
+                    <br>
+                    <br>
+            <button onclick="contarGenero()">Ver variedade de generos</button>
+                    <br>
+                    <br>
+            <div id="div_mensagem2"></div>
+        
+</center>
+</body>
+</html>
+
+<script>
+
+let livros = [];
+
+    function cadastro() {
+        let titulo = ipt_titulo.value;
+        let autor = ipt_autor.value;
+        let genero = sel_genero.value;
+        let status = sel_status.value;
+        let mensagem = '';
+
+        let livro = {Titulo: titulo, Autor: autor, Genero: genero, Status: status};
+
+        livros.push(livro);
+
+        mensagem += "Livros cadastrados:<br><br>";
+
+        for (let i = 0; i < livros.length; i++) {
+
+            mensagem += `${livros[i].Titulo} - ${livros[i].Autor}<br>`;
+
+        }
+
+        console.log(livros);
+        
+        div_mensagem.innerHTML = mensagem;
+    }
+
+
+    function contarGenero(){
+        let genero2 = sel_genero2.value;
+        let contador = 0;
+        let mensagem2 = '';
+
+        for (let i = 0; i < livros.length; i++){
+            if (livros[i].Genero === genero2) {
+            contador++ 
+            }
+        }
+
+        mensagem2 += `Tem ${contador} livros do gênero ${genero2}`;
+
+        console.log(livros);
+
+        div_mensagem2.innerHTML = mensagem2;
+    }
+</script>

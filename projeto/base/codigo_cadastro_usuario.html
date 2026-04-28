@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BASE USUARIO</title>
+</head>
+<body>
+<center>
+    <h1>Olá, seja bem-vindo(a)!</h1>
+        <h2 style="color: brown;">Se cadastre:</h2>
+
+            <p>Insira seu nome:</p>
+                <input type="text" id="ipt_nome">
+                    <br>
+            <p>Insira o seu email:</p>
+                <input type="text" id="ipt_email">
+                    <br>
+                    <br>
+            <p>Insira o sua senha:</p>
+                <input type="text" id="ipt_senha">
+                    <br>
+                    <br>
+            <p>Insira o seu CPF:</p>
+                <input type="text" id="ipt_cpf">
+                    <br>
+                    <br>
+            <button onclick="cadastroUsuario()">Cadastrar</button>
+                    <br>
+                    <br>
+            <div id="div_mensagem"></div>
+</center>    
+</body>
+</html>
+
+<script>
+let usuarios = [];
+    function cadastroUsuario() {
+        let mensagem = '';
+
+        let nome = ipt_nome.value;
+        let email = ipt_email.value;
+        let senha = ipt_senha.value;
+        let cpf = ipt_cpf.value;
+        let especiais = "!@#$%&*()_+[]{};:,.<>?";
+        let usuario = {nome, email, senha, cpf};
+
+        for (let i = 0; i < usuarios.length; i++)
+            if (nome == "" || email == "" || senha == "" || cpf == "") {
+                alert("Preencha todos os campos!");
+            }
+
+                else if (usuarios[i].cpf === cpf) {
+                alert("Já existe usuário com esse CPF!");
+                }
+
+                else if (cpf.length < 11 || cpf.length > 11) {
+                alert("Insira um CPF válido com 11 digitos!");
+                }
+
+                else if (senha.length < 8) {
+                    alert('A senha precisa ter a partir de 8 caracteres');
+                }
+
+                    else {
+                        usuarios.push(usuario);
+                    
+                        mensagem += 'Usuário cadastrado com sucesso!'
+                    }
+
+    console.log(usuarios);
+
+    div_mensagem.innerHTML = mensagem;
+
+}
+
+</script>

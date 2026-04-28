@@ -4,7 +4,7 @@ USE MY_Library;
 CREATE TABLE usuario(
     id_usuario INT PRIMARY KEY AUTO_INCREMENT,
     nome VARCHAR(50) NOT NULL,
-    cpf VARCHAR(50) UNIQUE NOT NULL,
+    cpf CHAR(11) UNIQUE NOT NULL,
     email VARCHAR(70) UNIQUE NOT NULL,
     senha VARCHAR(30) NOT NULL
 );

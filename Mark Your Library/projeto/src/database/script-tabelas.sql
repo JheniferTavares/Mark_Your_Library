@@ -6,8 +6,8 @@
 comandos para mysql server
 */
 
-CREATE DATABASE MY_Library;
-USE MY_Library;
+CREATE DATABASE my_library;
+USE my_library;
 
 CREATE TABLE usuario(
     id_usuario INT PRIMARY KEY AUTO_INCREMENT,
@@ -32,13 +32,25 @@ INSERT INTO genero (nome) VALUES
 	('Infantil'),
 	('Terror');
 
-CREATE TABLE livro (
-    id_livro INT PRIMARY KEY AUTO_INCREMENT,
+CREATE TABLE livro_biblioteca (
+    id_livro_biblioteca INT PRIMARY KEY AUTO_INCREMENT,
     titulo VARCHAR(50) NOT NULL,
     autor VARCHAR(50),
     status VARCHAR(20),
     CONSTRAINT chk_status 
         CHECK (status IN ('quero_ler', 'lendo', 'lido')),
+    fk_genero INT,
+    fk_usuario INT,
+    FOREIGN KEY (fk_genero)
+		REFERENCES genero(id_genero),
+    FOREIGN KEY (fk_usuario)
+		REFERENCES usuario(id_usuario)
+) AUTO_INCREMENT = 1000;
+
+CREATE TABLE livro_desejo (
+    id_livro_desejo INT PRIMARY KEY AUTO_INCREMENT,
+    titulo VARCHAR(50) NOT NULL,
+    autor VARCHAR(50),
     fk_genero INT,
     fk_usuario INT,
     FOREIGN KEY (fk_genero)

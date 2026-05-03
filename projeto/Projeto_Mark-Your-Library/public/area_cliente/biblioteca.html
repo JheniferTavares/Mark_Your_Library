@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="./js/sessao.js"></script>
+    
+    <link rel="stylesheet" href="../css/estilo.css">
+    <link rel="icon" href="../assets/icon/favicon2.ico">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+</head>
+
+<body>
+    <div class="header">
+      <div class="container">
+        <h1 class="titulo">Mark Your Library</h1>
+        <ul class="navbar">
+          <li class="agora">
+            <a href="inicio.html">Inicio</a>
+          </li>
+          <li>
+            <a href="desejo.html"><img src="" alt="">Meu desejo</a>
+          </li>
+          <li>|</li>
+          <li>
+            <a href="retrospectiva.html"><img src="" alt="">Retrospectiva</a>
+          </li>
+          <li>
+            <a href="../index.html" class="btn-logout" onclick="limparSessao()">Sair</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  
+ <div class="login">
+    <div class="alerta_erro">
+      <div class="card_erro" id="cardErro">
+        <span id="mensagem_erro"></span>
+      </div>
+    </div>
+    <div class="container">
+      <div class="card card-cadastro">
+        <h2>Bem-vindo!</h2>
+        <h3>Cadastre aqui os livros que você já possui:</h3>
+        <div class="formulario">
+          <!--
+                         Para inserir mais um campo, copie uma das inputs abaixo.
+                         Assim que inserir vá para o script abaixo.
+                     -->
+          <div class="campo">
+            <span>Insira o título do livro:</span>
+            <input id="ipt_titulo" type="text" placeholder="Ex: O Pequeno Príncipe" />
+          </div>
+          <div class="campo">
+            <span>Insira o Autor(a) do livro:</span>
+            <input id="ipt_autor" type="text" placeholder="Ex: Saint-Exupéry" />
+          </div>
+          <div class="campo">
+            <select id="sel_genero">
+                <option value="" disabled selected>Insira o gênero do livro</option>
+                <option value="romance">Romance</option>
+                <option value="fantasia">Fantasia</option>
+                <option value="scifi">Ficção Científica</option>
+                <option value="suspense">Aventura</option>
+                <option value="cronica">Crônica</option>
+                <option value="poesia">Poesia</option>
+                <option value="infantil">Infantil</option>
+                <option value="terror">Terror</option>
+            </select>
+          </div>
+          <div class="campo">
+            <select id="sel_status">
+                <option value="" disabled selected>Status de leitura</option>
+                <option value="querendo_ler">Querendo ler</option>
+                <option value="lendo">Lendo</option>
+                <option value="lido">Já li</option>
+            </select>
+          </div>
+          <button class="botao" onclick="cadastrar()">Cadastrar livro</button>
+        </div>
+        <div id="div_aguardar" class="loading-div">
+          <img src="./assets/circle-loading.gif" id="loading-gif" />
+        </div>
+
+        <div id="div_erros_login"></div>
+      </div>
+    </div>
+  </div>
+</body>
+  
+    <div class="footer">
+      <div class="container">
+        <h4>Feito com amor por aluno &hearts; SPTech &copy; 2023</h4>
+        <span class="version">v1.0.0</span>
+      </div>
+    </div>
+  </body>
+
+</html>
+
+<script>
+    function confirmarSaida() {
+
+        let resposta = confirm("Tem certeza que deseja sair da conta?");
+
+        if (resposta) {
+            limparSessao();
+            return true;
+        }
+
+        return false;
+    }
+</script>

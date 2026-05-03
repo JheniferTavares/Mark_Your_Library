@@ -6,158 +6,55 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <script src="./js/sessao.js"></script>
+    <title>M.Y_Library - Área do Usuário</title>
 
-    <link rel="stylesheet" href="../css/style.css">
-    <link rel="icon" href="../assets/icon/favicon2.ico">
+    <script src="../js/sessao.js"></script>
+
+    <link rel="stylesheet" href="../css/estilo.css">
+    <link rel="icon" href="/assets/icon/home.png">
     <link rel="preconnect" href="https://fonts.gstatic.com">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jacques+Francois+Shadow&display=swap" rel="stylesheet">
+
 </head>
 
 <body>
-    <div class="header">
-      <div class="container">
-          <a href="#" class="titulo_home"><img src="../public/assets/img/logo/home.png" width="45"></a>
-        <ul class="navbar">
-            <a href="desejo.html">Meu desejo</a>
-            <a href="biblioteca.html">Minha biblioteca</a>
-            <a href="retrospectiva.html">Retrospectiva</a>
+      <div class="header">
+        <div class="container">
+            <a href="../index.html" class="titulo_home"><img src="/assets/logo/home.png" width="80"></a>
+          <ul class="navbar">
+              <a href="inicio.html" class="agora">Início</a>
+              <a href="desejo.html">Meu desejo</a>
+              <a href="biblioteca.html">Minha biblioteca</a>
+              <a href="retrospectiva.html">Retrospectiva</a>
+        <div class="btn-logout" onclick="limparSessao()">
+            <h3>Sair</h3>
         </ul>
       </div>
     </div>
 
+
+    <div class="banner_home">
+      <div class="container">
+        <h1 class="banner_titulo">Área do Usuário</h1>
+      </div>
+    </div>
+
+
+    <div class="social">
+      <div class="container">
+        <div class="boxes">
+          <div class="box">
+          </div>
+          <div class="box">
+          </div>
+          <div class="box">
+          </div>
+        </div>
+      </div>
+    </div>
   </body>
 
 </html>
-
-<script>
-
-  function cadastrar() {
-    // aguardar();
-
-    //Recupere o valor da nova input pelo nome do id
-    // Agora vá para o método fetch logo abaixo
-    var nomeVar = nome_input.value;
-    var emailVar = email_input.value;
-    var senhaVar = senha_input.value;
-    var confirmacaoSenhaVar = confirmacao_senha_input.value;
-
-    let emailArroba = emailVar.indexOf('@');
-    let emailPonto = emailVar.lastIndexOf('.');
-    let caractereEspecial = false;
-
-      if (senhaVar != confirmacaoSenhaVar) {
-          
-        cardErro.style.display = "block";
-        mensagem_erro.innerHTML =
-          "As senhas não estão iguais.";
-          
-          return false;
-        }
-
-    // Verificando se há algum campo em branco
-    if (
-      nomeVar == "" ||
-      emailVar == "" ||
-      senhaVar == "" ||
-      confirmacaoSenhaVar == ""
-    ) {
-      cardErro.style.display = "block";
-      mensagem_erro.innerHTML =
-        "(Mensagem de erro para todos os campos em branco)";
-
-      finalizarAguardar();
-      return false;
-    } 
-      
-      else {
-      setInterval(sumirMensagem, 5000);
-    }
-
-    // Verificação de email
-
-      if (emailArroba <= 0 || emailPonto <= emailArroba + 1 || emailPonto >= emailVar.length - 1) {
-
-        cardErro.style.display = "block";
-        mensagem_erro.innerHTML = "Por favor, insira um e-mail válido.";
-
-        return false;
-      }
-
-//Verificação de senha
-
-      if (senhaVar.length < 8) {
-
-        cardErro.style.display = "block";
-        mensagem_erro.innerHTML =
-          "Por favor, insira uma senha a partir de 8 caracteres.";
-
-        return false;
-      }
-
-
-      for (let i = 0; i < senhaVar.length; i++) {
-
-        if (senhaVar[i] == '!' || senhaVar[i] == '@' || senhaVar[i] == '#' || senhaVar[i] == '$' || senhaVar[i] == '%' || senhaVar[i] == '&' || senhaVar[i] == '*' || senhaVar[i] == '.' || senhaVar[i] == ',') {
-
-            caractereEspecial = true;
-        }
-      }
-
-if (caractereEspecial == false) {
-
-  cardErro.style.display = "block";
-  mensagem_erro.innerHTML =
-    "Por favor, insira um caractere especial.";
-
-  return false;
-}
-
-    
-
-
-    // Enviando o valor da nova input
-    fetch("http://localhost:3333/usuarios/cadastrar", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        // crie um atributo que recebe o valor recuperado aqui
-        // Agora vá para o arquivo routes/usuario.js
-        nomeServer: nomeVar,
-        emailServer: emailVar,
-        senhaServer: senhaVar,
-      }),
-    })
-      .then(function (resposta) {
-        console.log("resposta: ", resposta);
-
-        if (resposta.ok) {
-          cardErro.style.display = "block";
-
-          mensagem_erro.innerHTML =
-            "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
-
-          setTimeout(() => {
-            window.location = "login.html";
-          }, "2000");
-
-          limparFormulario();
-          finalizarAguardar();
-        } else {
-          throw "Houve um erro ao tentar realizar o cadastro!";
-        }
-      })
-      .catch(function (resposta) {
-        console.log(`#ERRO: ${resposta}`);
-        finalizarAguardar();
-      });
-
-    return false;
-  }
-
-
-  function sumirMensagem() {
-    cardErro.style.display = "none";
-  }
-</script>

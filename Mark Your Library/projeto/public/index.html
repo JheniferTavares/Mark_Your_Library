@@ -6,23 +6,40 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <title>M.Y_Library - Home</title>
+
     <script src="./js/sessao.js"></script>
 
-    <link rel="stylesheet" href="./css/style.css">
-    <link rel="icon" href="./assets/icon/favicon2.ico">
+    <link rel="stylesheet" href="./css/estilo.css">
+    <link rel="icon" href="/assets/icon/home.png">
     <link rel="preconnect" href="https://fonts.gstatic.com">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jacques+Francois+Shadow&display=swap" rel="stylesheet">
+
 </head>
 
 <body>
     <div class="header">
       <div class="container">
-          <a href="#" class="titulo_home"><img src="../public/assets/img/logo/home.png" width="45"></a>
+          <a href="index.html" class="titulo_home"><img src="/assets/logo/home.png" width="80"></a>
         <ul class="navbar">
             <a href="cadastro.html">Cadastro</a>
             <a href="login.html">Login</a>
+            <a href="#" onclick="acessarAreaUsuario()">Área do Usuário</a>
         </ul>
       </div>
     </div>
+
+
+    <div class="banner_home">
+      <div class="container">
+        <h1>Mark Your Library</h1>
+      </div>
+    </div>
+
+
     <div class="social">
       <div class="container">
         <div class="boxes">
@@ -38,3 +55,20 @@
   </body>
 
 </html>
+
+<script>
+
+function acessarAreaUsuario() {
+
+    if (sessionStorage.ID_USUARIO) {
+
+        window.location = "area_cliente/inicio.html";
+    }
+      
+      else {
+
+        window.location = "login.html";
+      }
+}
+
+</script>

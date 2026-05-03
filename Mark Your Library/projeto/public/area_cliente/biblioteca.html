@@ -6,34 +6,42 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <script src="./js/sessao.js"></script>
-    
+    <title>M.Y_Library - Minha biblioteca</title>
+
+    <script src="../js/sessao.js"></script>
+
     <link rel="stylesheet" href="../css/estilo.css">
-    <link rel="icon" href="../assets/icon/favicon2.ico">
+    <link rel="icon" href="/assets/icon/home.png">
     <link rel="preconnect" href="https://fonts.gstatic.com">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jacques+Francois+Shadow&display=swap" rel="stylesheet">
+
 </head>
 
 <body>
-    <div class="header">
-      <div class="container">
-        <h1 class="titulo">Mark Your Library</h1>
-        <ul class="navbar">
-          <li class="agora">
-            <a href="inicio.html">Inicio</a>
-          </li>
-          <li>
-            <a href="desejo.html"><img src="" alt="">Meu desejo</a>
-          </li>
-          <li>|</li>
-          <li>
-            <a href="retrospectiva.html"><img src="" alt="">Retrospectiva</a>
-          </li>
-          <li>
-            <a href="../index.html" class="btn-logout" onclick="limparSessao()">Sair</a>
-          </li>
+      <div class="header">
+        <div class="container">
+            <a href="../index.html" class="titulo_home"><img src="/assets/logo/home.png" width="80"></a>
+          <ul class="navbar">
+              <a href="inicio.html">Início</a>
+              <a href="desejo.html">Meu desejo</a>
+              <a href="biblioteca.html" class="agora">Minha biblioteca</a>
+              <a href="retrospectiva.html">Retrospectiva</a>
+        <div class="btn-logout" onclick="limparSessao()">
+            <h3>Sair</h3>
         </ul>
       </div>
     </div>
+
+
+    <div class="banner_biblioteca">
+      <div class="container">
+        <h1 class="banner_titulo">Minha biblioteca</h1>
+      </div>
+    </div>
+
   
  <div class="login">
     <div class="alerta_erro">
@@ -79,7 +87,7 @@
                 <option value="lido">Já li</option>
             </select>
           </div>
-          <button class="botao" onclick="cadastrar()">Cadastrar livro</button>
+          <button class="botao" onclick="cadastrar()">Cadastrar</button>
         </div>
         <div id="div_aguardar" class="loading-div">
           <img src="./assets/circle-loading.gif" id="loading-gif" />
@@ -90,27 +98,5 @@
     </div>
   </div>
 </body>
-  
-    <div class="footer">
-      <div class="container">
-        <h4>Feito com amor por aluno &hearts; SPTech &copy; 2023</h4>
-        <span class="version">v1.0.0</span>
-      </div>
-    </div>
-  </body>
 
 </html>
-
-<script>
-    function confirmarSaida() {
-
-        let resposta = confirm("Tem certeza que deseja sair da conta?");
-
-        if (resposta) {
-            limparSessao();
-            return true;
-        }
-
-        return false;
-    }
-</script>

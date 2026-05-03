@@ -1,43 +1,36 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>AquaTech | Login</title>
+    <title>M.Y_Library - Home</title>
 
     <script src="./js/sessao.js"></script>
 
     <link rel="stylesheet" href="./css/estilo.css">
-    <link rel="icon" href="./assets/icon/favicon2.ico">
+    <link rel="icon" href="/assets/icon/home.png">
     <link rel="preconnect" href="https://fonts.gstatic.com">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jacques+Francois+Shadow&display=swap" rel="stylesheet">
+
 </head>
 
 <body>
 
-    <!--Header-->
-
     <div class="header">
-        <div class="container">
-            <h1 class="titulo">AquaTech</h1>
-            <ul class="navbar">
-                <li>
-                    <a href="index.html">Inicial</a>
-                </li>
-                <li>
-                    <a href="simulador.html">Simulador</a>
-                </li>
-                <li>|</li>
-                <li class="agora">
-                    <a href="#">Login</a>
-                </li>
-                <li>
-                    <a href="cadastro.html">Cadastro</a>
-                </li>
-            </ul>
-        </div>
+      <div class="container">
+          <a href="index.html" class="titulo_home"><img src="/assets/logo/home.png" width="80"></a>
+        <ul class="navbar">
+            <a href="cadastro.html">Cadastro</a>
+            <a href="login.html" class="agora">Login</a>
+            <a href="#" onclick="acessarAreaUsuario()">Área do Usuário</a>
+        </ul>
+      </div>
     </div>
 
 
@@ -50,6 +43,7 @@
         <div class="container">
             <div class="card card-login">
                 <h2>Olá de volta!</h2>
+                <br>
                 <div class="formulario">
                     <div class="campo">
                         <span>E-mail:</span>
@@ -70,15 +64,6 @@
             </div>
         </div>
     </div>
-
-    <!--footer inicio-->
-    <div class="footer">
-        <div class="container">
-            <h4>Feito com amor por aluno &hearts; SPTech &copy; 2023</h4>
-            <span class="version">v1.0.0</span>
-        </div>
-    </div>
-    <!--footer fim-->
 
 </body>
 
@@ -155,5 +140,17 @@
     function sumirMensagem() {
         cardErro.style.display = "none"
     }
+    
+    function acessarAreaUsuario() {
 
+        if (sessionStorage.ID_USUARIO) {
+
+            window.location = "area_cliente/inicio.html";
+        }
+      
+            else {
+
+                window.location = "login.html";
+            }
+    }
 </script>

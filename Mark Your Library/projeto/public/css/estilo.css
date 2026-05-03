@@ -1,10 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Jacques+Francois+Shadow&display=swap');
 
 body {
   margin: 0;
   padding: 0;
   font-family: 'Barlow', 'Segoe UI', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: black;
+  background-color: #2F2222;
 }
 
 :root {
@@ -19,14 +20,28 @@ body {
   display: flex;
   width: 80%;
   margin: auto;
+  text-align: center;
+}
+
+.container h1 {
+  font-family: "Jacques Francois Shadow", serif;
+  font-weight: 400;
+  font-size: 100px;
+  -webkit-text-stroke: 0.9px white;
+}
+
+.header {
+    margin: 0px;
+    background-color: #D9D9D9;
 }
 
 .header {
   height: var(--tamanho-header);
-  border-bottom: 2px solid #32b9cd;
+  border-bottom: 2px solid #000000;
 }
 
 .header .container {
+  display: flex;
   justify-content: space-between;
   align-items: center;
   height: 100%;
@@ -34,61 +49,80 @@ body {
 
 .header a {
   text-decoration: none;
-  color: #e3b062;
+  color: #000000;
 }
 
 .agora {
-  font-weight: 800;
+  font-weight: bold;
+}
+
+.titulo_home {
+  display: flex;
+  align-items: center;
+  margin-left: 0;
 }
 
 .navbar {
-  width: 300px;
+  margin-left: auto;
+  width: auto;
+  gap: 20px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   list-style: none;
-  color: #e3b062;
-}
-
-.titulo {
-  color: #32b9cd;
-  width: fit-content;
-  font-weight: 500;
-}
-
-.header h1 {
-  margin: 0;
+  color: #000000;
 }
 
 /* BANNER */
 
-.banner {
-  height: var(--tamanho-banner);
-  color: white;
-  background-image: url('../assets/imgs/bg-jelly-fish-para-home.png');
-  background-size: cover;
+.banner_home {
+    height: 300px;
+    background-image: url("../assets/banner/home.png");
+    display: flex;
+    align-items: center;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    border-bottom: 30px solid black;
 }
 
-.banner .container {
-  justify-content: center;
-  align-items: center;
-  height: 100%;
+.banner_biblioteca {
+    height: 300px;
+    background-image: url("../assets/banner/biblioteca.png");
+    display: flex;
+    align-items: center;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    border-bottom: 30px solid black;
 }
 
-.banner .container p {
-  width: 50%;
-  margin: 0;
-  padding: 0;
-  font-size: 36px;
+.banner_desejo {
+    height: 300px;
+    background-image: url("../assets/banner/desejo.png");
+    display: flex;
+    align-items: center;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    border-bottom: 30px solid black;
 }
 
-.banner .container span {
-  font-weight: 800;
+.banner_retrospectiva {
+    height: 300px;
+    background-image: url("../assets/banner/retrospectiva.png");
+    display: flex;
+    align-items: center;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    border-bottom: 30px solid black;
 }
 
 /* MISSÃO VISÃO VALORES */
 
 .social {
+  margin: 50px;
   background-color: #e5e5e5;
   display: flex;
 }
@@ -118,24 +152,6 @@ body {
   align-items: center;
 }
 
-/* FOOTER */
-
-.footer {
-  background-color: #32b9cd;
-  height: 150px;
-  color: #fff;
-  display: flex;
-  font-size: 15px;
-}
-
-.footer .container {
-  justify-content: center;
-  text-align: center;
-}
-
-.footer .container .version {
-  font-size: 12px;
-}
 
 /* LOGIN */
 
@@ -152,13 +168,13 @@ body {
 }
 
 .card {
-  width: 50%;
+  width: 80%;
   background-color: #e5e5e5;
   border-radius: 10px;
   display: flex;
   align-items: center;
   justify-content: space-evenly;
-  color: palevioletred;
+  color: rgb(0, 0, 0);
   flex-direction: column;
   height: fit-content;
   padding: 20px 0;
@@ -183,14 +199,15 @@ body {
 }
 
 .formulario input {
-  border: 2px solid #32b9cd;
+  border: 2px solid #000000;
   text-align: center;
   border-radius: 10px;
   margin: 0;
 }
 
 .formulario select {
-  border: 2px solid #32b9cd;
+  justify-items: center;
+  border: 2px solid #000000;
   background-color: white;
   color: gray;
   height: 36px;
@@ -214,7 +231,7 @@ body {
   font-weight: 600;
   font-size: 18px;
   color: #fff;
-  background-color: #ED145B;
+  background-color: #2F2222;
   width: 120px;
   height: 30px;
   align-self: center;
@@ -249,7 +266,7 @@ body {
   width: 230px;
   position: fixed;
   border-radius: 4px;
-  border: #ED145B 3px solid;
+  border: #2F2222 3px solid;
   padding: 10px;
   margin-right: 10%;
 }
@@ -271,7 +288,7 @@ body {
 
 input {
   margin-bottom: 10px;
-  border: 2px solid #32b9cd;
+  border: 2px solid #000000;
   padding: 10px;
   text-align: center;
   border-radius: 10px;
@@ -285,7 +302,7 @@ input {
   font-size: 18px;
   padding: 10px 15px;
   color: white;
-  background-color: #ED145B;
+  background-color: #2F2222;
   width: 120px;
   align-self: center;
   margin-top: 5px;
@@ -300,18 +317,6 @@ input {
 .loading-div img {
   height: 50px;
   width: 50px;
-}
-
-/* SIMULADOR */
-
-.simulador {
-  color: white;
-}
-
-.simulador .container {
-  flex-direction: column;
-  overflow: scroll; 
-  height: var(--tamanho-simulador);
 }
 
 /* ALERTA */

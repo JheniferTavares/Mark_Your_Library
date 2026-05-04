@@ -21,16 +21,6 @@ function apagarLivroDesejo(titulo, autor, idUsuario) {
     return database.executar(instrucaoSql);
 }
 
-function cadastrarLivroDesejo(titulo, autor, genero, idUsuario) {
-
-    var instrucaoSql = `
-        SELECT titulo AS '${titulo}', autor AS '${autor}', fk_genero AS '${genero}', fk_usuario AS '${idUsuario}' FROM livro_desejo;
-    `;
-    console.log("Executando a instrução SQL: \n" + instrucaoSql);
-
-    return database.executar(instrucaoSql);
-}
-
 module.exports = {
     cadastrarLivroDesejo,
     apagarLivroDesejo

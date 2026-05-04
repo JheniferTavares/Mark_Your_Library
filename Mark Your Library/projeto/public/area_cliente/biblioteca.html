@@ -225,43 +225,10 @@ console.log(sessionStorage.ID_USUARIO);
 
         livrosBiblioteca.push(livro_biblioteca);
 
-
-          limparFormulario();
-          finalizarAguardar();
-
-        } else {
-          throw "Houve um erro ao tentar realizar o cadastro!";
-        }
-      })
-      .catch(function (resposta) {
-        console.log(`#ERRO: ${resposta}`);
-        finalizarAguardar();
-      });
-
-    fetch("http://localhost:3333/livro_biblioteca/cadastrarLivroBiblioteca", {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        tituloServer: tituloVar,
-        autorServer: autorVar,
-        generoServer: generoVar,
-        statusServer: statusVar,
-        idUsuarioServer: sessionStorage.ID_USUARIO
-      }),
-    })
-      .then(function (resposta) {
-        console.log("resposta: ", resposta);
-
-        if (resposta.ok) {
-          cardErroCadastro.style.display = "block";
-
         for (let i = 0; i < livrosBiblioteca.length; i++) {
 
-            mensagem += `${livrosBiblioteca[i].Titulo} - ${livrosBiblioteca[i].Autor}<br> Gênero: ${livrosBiblioteca[i].Genero}/<br> Status de leitura: ${livrosBiblioteca[i].Status}<br><br>`;
+            mensagem += `${livrosBiblioteca[i].Titulo} - ${livrosBiblioteca[i].Autor}<br> Gênero: ${livrosBiblioteca[i].Genero}`;
         }
-
           limparFormulario();
           finalizarAguardar();
 
@@ -273,8 +240,6 @@ console.log(sessionStorage.ID_USUARIO);
         console.log(`#ERRO: ${resposta}`);
         finalizarAguardar();
       });
-
-      listaBiblioteca.innerHTML = mensagem;
 
     return false;
 

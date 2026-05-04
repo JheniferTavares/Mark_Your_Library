@@ -13,8 +13,4 @@ router.delete("/apagarLivroBiblioteca", function (req, res) {
     livro_bibliotecaController.apagarLivroBiblioteca(req, res);
 });
 
-router.get("/cadastrarLivroBiblioteca", function (req, res) {
-    livro_bibliotecaController.cadastrarLivroBiblioteca(req, res);
-});
-
 module.exports = router;

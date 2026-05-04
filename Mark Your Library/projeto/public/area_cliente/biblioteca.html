@@ -17,6 +17,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Jacques+Francois+Shadow&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Alumni+Sans+SC:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Alumni+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 
 </head>
 
@@ -25,10 +27,10 @@
         <div class="container">
             <a href="../index.html" class="titulo_home"><img src="/assets/logo/home.png" width="80"></a>
           <ul class="navbar">
-              <a href="inicio.html">Início</a>
-              <a href="desejo.html">Meu desejo</a>
-              <a href="biblioteca.html" class="agora">Minha biblioteca</a>
-              <a href="retrospectiva.html">Retrospectiva</a>
+              <a href="inicio.html"><img src="../assets/logo/usuario.png" width="40">Início</a>
+              <a href="desejo.html"><img src="../assets/logo/desejo.png" width="40">Meu desejo</a>
+              <a href="biblioteca.html" class="agora"><img src="../assets/logo/biblioteca.png" width="40">Minha biblioteca</a>
+              <a href="retrospectiva.html"><img src="../assets/logo/retrospectiva.png" width="40">Retrospectiva</a>
         <div class="btn-logout" onclick="limparSessao()">
             <h3>Sair</h3>
         </ul>
@@ -45,19 +47,15 @@
   
  <div class="login">
     <div class="alerta_erro">
-      <div class="card_erro" id="cardErro">
-        <span id="mensagem_erro"></span>
+    <div class="card_erro" id="cardErroCadastro">
+      <span id="mensagem_erro_cadastro"></span>
       </div>
     </div>
     <div class="container">
       <div class="card card-cadastro">
-        <h2>Bem-vindo!</h2>
+        <h2>Bem-vindo(a)!</h2>
         <h3>Cadastre aqui os livros que você já possui:</h3>
         <div class="formulario">
-          <!--
-                         Para inserir mais um campo, copie uma das inputs abaixo.
-                         Assim que inserir vá para o script abaixo.
-                     -->
           <div class="campo">
             <span>Insira o título do livro:</span>
             <input id="ipt_titulo" type="text" placeholder="Ex: O Pequeno Príncipe" />
@@ -69,34 +67,247 @@
           <div class="campo">
             <select id="sel_genero">
                 <option value="" disabled selected>Insira o gênero do livro</option>
-                <option value="romance">Romance</option>
-                <option value="fantasia">Fantasia</option>
-                <option value="scifi">Ficção Científica</option>
-                <option value="suspense">Aventura</option>
-                <option value="cronica">Crônica</option>
-                <option value="poesia">Poesia</option>
-                <option value="infantil">Infantil</option>
-                <option value="terror">Terror</option>
+                <option value="100">Romance</option>
+                <option value="101">Fantasia</option>
+                <option value="102">Ficção Científica</option>
+                <option value="103">Aventura</option>
+                <option value="104">Crônica</option>
+                <option value="105">Poesia</option>
+                <option value="106">Infantil</option>
+                <option value="107">Terror</option>
             </select>
           </div>
           <div class="campo">
             <select id="sel_status">
                 <option value="" disabled selected>Status de leitura</option>
-                <option value="querendo_ler">Querendo ler</option>
+                <option value="quero_ler">Querendo ler</option>
                 <option value="lendo">Lendo</option>
                 <option value="lido">Já li</option>
             </select>
           </div>
-          <button class="botao" onclick="cadastrar()">Cadastrar</button>
+          <button class="botao" onclick="cadastrarLivroBiblioteca()">Cadastrar</button>
         </div>
         <div id="div_aguardar" class="loading-div">
-          <img src="./assets/circle-loading.gif" id="loading-gif" />
+          <img src="../assets/carregando.gif" id="loading-gif" />
         </div>
 
         <div id="div_erros_login"></div>
       </div>
     </div>
   </div>
+
+
+   <div class="login">
+    <div class="alerta_erro">
+      <div class="card_erro" id="cardErro">
+        <span id="mensagem_erro"></span>
+      </div>
+    </div>
+    <div class="container">
+      <div class="card card-cadastro">
+        <h2>Tire o livro da biblioteca:</h2>
+        <h4>Tenha certeza de que os campos preenchidos correspondam com o que foi cadastrado.</h4>
+        <div class="formulario">
+          <div class="campo">
+            <span>Insira o título do livro:</span>
+            <input id="ipt_titulo_del" type="text" placeholder="Ex: O Pequeno Príncipe" />
+          </div>
+          <div class="campo">
+            <span>Insira o Autor(a) do livro:</span>
+            <input id="ipt_autor_del" type="text" placeholder="Ex: Saint-Exupéry" />
+          </div>
+          <button class="botao" onclick="retiradaBiblioteca()">Apagar</button>
+        </div>
+        <div id="div_aguardar" class="loading-div">
+          <img src="../assets/carregando.gif" id="loading-gif" />
+        </div>
+
+        <div id="div_erros_login"></div>
+      </div>
+    </div>
+  </div>
+
+    <div class="registrado">
+      <div class="container">
+        <div class="boxes">
+          <div class="box">
+            <div class="filtro">
+              <select id="sel_genero_fil">
+                <option value="" disabled selected>Gênero</option>
+                <option value="100">Romance</option>
+                <option value="101">Fantasia</option>
+                <option value="102">Ficção Científica</option>
+                <option value="103">Aventura</option>
+                <option value="104">Crônica</option>
+                <option value="105">Poesia</option>
+                <option value="106">Infantil</option>
+                <option value="107">Terror</option>
+              </select>
+
+              <select id="sel_status_fil">
+                <option value="" disabled selected>Status de leitura</option>
+                <option value="quero_ler">Querendo ler</option>
+                <option value="lendo">Lendo</option>
+                <option value="lido">Já li</option>                
+              </select>
+            </div>
+            <h2>Meus livros:</h2>
+            <div id="listaBiblioteca" class="mensagem_lista"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
 </body>
 
 </html>
+
+
+<script>
+
+let livrosBiblioteca = [];
+
+  function cadastrarLivroBiblioteca() {
+
+    var tituloVar = ipt_titulo.value;
+    var autorVar = ipt_autor.value;
+    var generoVar = sel_genero.value;
+    var statusVar = sel_status.value;
+
+    let mensagem = '';
+
+let livro_biblioteca = {
+  Titulo: tituloVar,
+  Autor: autorVar,
+  Genero: generoVar,
+  Status: statusVar
+}
+
+    if (
+      tituloVar == "" ||
+      autorVar == "" ||
+      generoVar == "" ||
+      statusVar == ""
+    ) {
+      cardErroCadastro.style.display = "block";
+      mensagem_erro_cadastro.innerHTML =
+        "Por favor, não deixe campos em branco.";
+
+      finalizarAguardar();
+      return false;
+    } else {
+      setInterval(sumirMensagem, 5000);
+    }
+
+  
+console.log(sessionStorage.ID_USUARIO);
+    fetch("http://localhost:3333/livro_biblioteca/cadastrarLivroBiblioteca", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        tituloServer: tituloVar,
+        autorServer: autorVar,
+        generoServer: generoVar,
+        statusServer: statusVar,
+        idUsuarioServer: sessionStorage.ID_USUARIO
+      }),
+    })
+      .then(function (resposta) {
+        console.log("resposta: ", resposta);
+
+        if (resposta.ok) {
+          cardErroCadastro.style.display = "block";
+
+          mensagem_erro_cadastro.innerHTML =
+            "Cadastro realizado com sucesso!";
+
+        livrosBiblioteca.push(livro_biblioteca);
+
+        for (let i = 0; i < livrosBiblioteca.length; i++) {
+
+            mensagem += `${livrosBiblioteca[i].Titulo} - ${livrosBiblioteca[i].Autor}<br> Gênero: ${livrosBiblioteca[i].Genero}`;
+        }
+          limparFormulario();
+          finalizarAguardar();
+
+        } else {
+          throw "Houve um erro ao tentar realizar o cadastro!";
+        }
+      })
+      .catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+        finalizarAguardar();
+      });
+
+    return false;
+
+  }
+
+  function retiradaBiblioteca() {
+
+    var tituloVar = ipt_titulo_del.value;
+    var autorVar = ipt_autor_del.value;
+
+    if (
+      tituloVar == "" ||
+      autorVar == ""
+    ) {
+        cardErro.style.display = "block";
+        mensagem_erro.innerHTML = "Por favor, não deixe campos em branco.";
+
+      finalizarAguardar();
+      return false;
+    } else {
+      setInterval(sumirMensagem, 5000);
+    }
+
+    fetch("http://localhost:3333/livro_biblioteca/apagarLivroBiblioteca", {
+        method: "DELETE",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            tituloServer: tituloVar,
+            autorServer: autorVar,
+            idUsuarioServer: sessionStorage.ID_USUARIO
+        }),
+    })
+      .then(function (resposta) {
+        console.log("resposta:", resposta);
+
+        if (resposta.ok) {
+          cardErro.style.display = "block";
+
+          mensagem_erro.innerHTML =
+            "Livro apagado com sucesso!";
+
+        limparFormulario();
+        finalizarAguardar();
+
+        } else {
+            throw ("Houve um erro ao apagar livro!");
+        }
+
+    })
+    .catch(function (erro) {
+        console.log("#ERRO:", erro);
+        finalizarAguardar();
+    });
+
+    return false;
+}
+
+function sumirMensagem() {
+    cardErroCadastro.style.display = "none";
+}
+
+function limparFormulario() {
+    ipt_titulo.value = "";
+    ipt_autor.value = "";
+    sel_genero.value = "";
+    sel_status.value = "";
+}
+
+</script>

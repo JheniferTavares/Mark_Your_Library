@@ -111,5 +111,36 @@ let livros = [];
         console.log(livros);
 
         div_mensagem2.innerHTML = mensagem2;
+
+        
+    <div class="registrado">
+      <div class="container">
+        <div class="boxes">
+          <div class="box">
+            <div class="filtro">
+              <select id="sel_genero_fil">
+                <option value="100">Romance</option>
+                <option value="101">Fantasia</option>
+                <option value="102">Ficção Científica</option>
+                <option value="103">Aventura</option>
+                <option value="104">Crônica</option>
+                <option value="105">Poesia</option>
+                <option value="106">Infantil</option>
+                <option value="107">Terror</option>
+              </select>
+
+              <select id="sel_status_fil">
+                <option value="" disabled selected>Status de leitura</option>
+                <option value="quero_ler">Querendo ler</option>
+                <option value="lendo">Lendo</option>
+                <option value="lido">Já li</option>                
+              </select>
+            </div>
+            <h2>Meus livros:</h2>
+            <div id="listaBiblioteca" class="mensagem_lista"></div>
+          </div>
+        </div>
+      </div>
+    </div>
     }
 </script>

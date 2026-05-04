@@ -138,7 +138,7 @@
               </select>
             </div>
             <h2>Meus livros:</h2>
-            <div id="listaBiblioteca" class="mensagem_lista"></div>
+            <div id="listaDesejo" class="mensagem_lista"></div>
           </div>
         </div>
       </div>
@@ -157,6 +157,8 @@ let livrosDesejo = [];
     var tituloVar = ipt_titulo.value;
     var autorVar = ipt_autor.value;
     var generoVar = sel_genero.value;
+
+    var mensagem = '';
 
 let livro_desejo = {
   Titulo: tituloVar,
@@ -219,6 +221,43 @@ console.log(sessionStorage.ID_USUARIO);
         console.log(`#ERRO: ${resposta}`);
         finalizarAguardar();
       });
+
+    fetch("http://localhost:3333/livro_desejo/desejoLivroBiblioteca", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        tituloServer: tituloVar,
+        autorServer: autorVar,
+        generoServer: generoVar,
+        idUsuarioServer: sessionStorage.ID_USUARIO
+      }),
+    })
+      .then(function (resposta) {
+        console.log("resposta: ", resposta);
+
+        if (resposta.ok) {
+          cardErroCadastro.style.display = "block";
+
+        for (let i = 0; i < livrosDesejo.length; i++) {
+
+            mensagem += `${livrosDesejo[i].Titulo} - ${livrosDesejo[i].Autor}<br> Gênero: ${livrosDesejo[i].Genero}/<br><br>`;
+        }
+
+          limparFormulario();
+          finalizarAguardar();
+
+        } else {
+          throw "Houve um erro ao tentar realizar o cadastro!";
+        }
+      })
+      .catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+        finalizarAguardar();
+      });
+
+      listaDesejo.innerHTML = mensagem;
 
     return false;
   }

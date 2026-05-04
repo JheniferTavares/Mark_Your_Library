@@ -13,4 +13,8 @@ router.delete("/apagarLivroDesejo", function (req, res) {
     livro_desejoController.apagarLivroDesejo(req, res);
 });
 
+router.get("/cadastrarLivroDesejo", function (req, res) {
+    livro_desejoController.cadastrarLivroDesejoLivroDesejo(req, res);
+});
+
 module.exports = router;

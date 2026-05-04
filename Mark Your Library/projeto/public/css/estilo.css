@@ -310,10 +310,6 @@ body {
   margin: 0;
 }
 
-.card card-cadastro h4{
-  margin-top: 0px;
-}
-
 .formulario select {
   border: 2px solid #000000;
   background-color: white;
@@ -380,6 +376,10 @@ body {
 }
 
 .card_erro #mensagem_erro{
+  font-weight: 500;
+  font-size: 20px;
+}
+.card_erro #mensagem_erro_cadastro{
   font-weight: 500;
   font-size: 20px;
 }

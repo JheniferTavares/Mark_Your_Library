@@ -21,8 +21,28 @@ function apagarLivroDesejo(titulo, autor, idUsuario) {
     return database.executar(instrucaoSql);
 }
 
+function filtrarDesejo(genero, idUsuario) {
+
+    if (`${genero_filtro_desejo}` == "") {
+
+        var instrucaoSql = `
+            SELECT * FROM livro_desejo WHERE fk_genero = ${genero_filtro_desejo}`
+
+    } else {
+
+        var instrucaoSql = `
+            SELECT * FROM livro_desejo WHERE id = ${genero_filtro_desejo} AND fk_usuario = ${idUsuario};
+        `;
+    }
+
+    console.log("Executando SQL: \n" + instrucaoSql);
+
+    return database.executar(instrucaoSql);
+}
+
 module.exports = {
     cadastrarLivroDesejo,
-    apagarLivroDesejo
+    apagarLivroDesejo,
+    filtrarDesejo
 };
 

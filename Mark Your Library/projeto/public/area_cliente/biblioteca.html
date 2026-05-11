@@ -134,6 +134,7 @@
             <div class="filtro">
               <select id="sel_genero_fil">
                 <option value="" disabled selected>Gênero</option>
+                <option value="">---</option>
                 <option value="100">Romance</option>
                 <option value="101">Fantasia</option>
                 <option value="102">Ficção Científica</option>
@@ -146,10 +147,12 @@
 
               <select id="sel_status_fil">
                 <option value="" disabled selected>Status de leitura</option>
+                <option value="">---</option>
                 <option value="quero_ler">Querendo ler</option>
                 <option value="lendo">Lendo</option>
                 <option value="lido">Já li</option>                
               </select>
+              <button onclick="filtrarBiblioteca()">Exibir biblioteca</button>
             </div>
             <h2>Meus livros:</h2>
             <div id="listaBiblioteca" class="mensagem_lista"></div>
@@ -295,6 +298,51 @@ console.log(sessionStorage.ID_USUARIO);
         console.log("#ERRO:", erro);
         finalizarAguardar();
     });
+
+    return false;
+}
+
+function filtrarBiblioteca() {
+
+  var generoFiltroVar = sel_genero_fil.value;
+  var statusFiltroVar = sel_status_fil.value;
+
+
+      fetch("http://localhost:3333/livro_biblioteca/filtrarBiblioteca", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        tituloServer: tituloVar,
+        autorServer: autorVar,
+        generoServer: generoFiltroVar,
+        statusServer: statusFiltroVar,
+        idUsuarioServer: sessionStorage.ID_USUARIO
+      }),
+    })
+      .then(function (resposta) {
+        console.log("resposta: ", resposta);
+
+        if (resposta.ok) {
+          cardErroCadastro.style.display = "block";
+
+          for (let i = 0; i < livros.length; i++) {
+
+            mensagem += `${livrosDesejo[i].Titulo} | <b>Escrito por:</b> ${livrosDesejo[i].Autor}<br><b>Genero:</b> ${livrosDesejo[i].Genero}<br><br>`;
+
+          }
+
+          limparFormulario();
+          finalizarAguardar();
+        } else {
+          throw "Houve um erro ao tentar filtrar o livro";
+        }
+      })
+      .catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+        finalizarAguardar();
+      });
 
     return false;
 }

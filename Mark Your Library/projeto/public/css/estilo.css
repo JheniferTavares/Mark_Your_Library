@@ -202,8 +202,7 @@ body {
 }
 
 .social p {
-  font-family: "Alumni Sans SC", sans-serif;
-  font-size: 25px;
+  font-size: 22px;
   margin-top: 0px;
 }
 
@@ -212,11 +211,15 @@ body {
   justify-content: space-around;
   width: 100%;
   padding: 20px 0;
-  gap: 50px;
+  gap: 70px;
 }
 
 .social p {
   text-align: center;
+}
+
+.social.container.boxes .box_retro {
+  gap: 70;
 }
 
 .box {

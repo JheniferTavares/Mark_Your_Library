@@ -135,7 +135,9 @@
                 <option value="105">Poesia</option>
                 <option value="106">Infantil</option>
                 <option value="107">Terror</option>
+                <option value="">---</option>
               </select>
+              <button id="filtrarDesejo()">Exibir lista</button>
             </div>
             <h2>Meus livros:</h2>
             <div id="listaBiblioteca" class="mensagem_lista"></div>
@@ -148,10 +150,11 @@
 
 </html>
 
-
+ 
 <script>
 
 let livrosDesejo = [];
+
   function cadastrarLivroDesejo() {
 
     var tituloVar = ipt_titulo.value;
@@ -202,12 +205,7 @@ console.log(sessionStorage.ID_USUARIO);
           mensagem_erro_cadastro.innerHTML =
             "Cadastro realizado com sucesso!";
 
-        livrosBiblioteca.push(livro_desejo);
-
-        for (let i = 0; i < livrosDesejo.length; i++) {
-
-            mensagem += `${livrosDesejo[i].Titulo} - ${livrosDesejo[i].Autor}<br> Gênero: ${livrosDesejo[i].Genero}`;
-        }
+        livrosDesejo.push(livro_desejo);
 
           limparFormulario();
           finalizarAguardar();
@@ -273,6 +271,48 @@ console.log(sessionStorage.ID_USUARIO);
         console.log("#ERRO:", erro);
         finalizarAguardar();
     });
+
+    return false;
+}
+
+function filtrarDesejo() {
+
+  var generoFiltroVar = sel_genero_fil.value;
+
+      fetch("http://localhost:3333/livro_desejo/filtrarDesejo", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        tituloServer: tituloVar,
+        autorServer: autorVar,
+        generoServer: generoFiltroVar,
+        idUsuarioServer: sessionStorage.ID_USUARIO
+      }),
+    })
+      .then(function (resposta) {
+        console.log("resposta: ", resposta);
+
+        if (resposta.ok) {
+          cardErroCadastro.style.display = "block";
+
+          for (let i = 0; i < livrosDesejo.length; i++) {
+
+            mensagem += `${livrosDesejo[i].Titulo} | <b>Escrito por:</b> ${livrosDesejo[i].Autor}<br><b>Genero:</b> ${livrosDesejo[i].Genero}<br><br>`;
+
+          }
+
+          limparFormulario();
+          finalizarAguardar();
+        } else {
+          throw "Houve um erro ao tentar realizar o cadastro!";
+        }
+      })
+      .catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+        finalizarAguardar();
+      });
 
     return false;
 }

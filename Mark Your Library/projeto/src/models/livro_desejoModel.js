@@ -21,12 +21,13 @@ function apagarLivroDesejo(titulo, autor, idUsuario) {
     return database.executar(instrucaoSql);
 }
 
-function filtrarDesejo(genero, idUsuario) {
+function filtrarDesejo(genero_filtro_desejo, idUsuario) {
 
     if (`${genero_filtro_desejo}` == "") {
 
         var instrucaoSql = `
-            SELECT * FROM livro_desejo WHERE fk_genero = ${genero_filtro_desejo}`
+            SELECT * FROM livro_desejo WHERE fk_usuario = ${idUsuario}
+            `;
 
     } else {
 

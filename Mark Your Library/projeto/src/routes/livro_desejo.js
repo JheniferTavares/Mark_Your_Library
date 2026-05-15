@@ -13,4 +13,8 @@ router.delete("/apagarLivroDesejo", function (req, res) {
     livro_desejoController.apagarLivroDesejo(req, res);
 });
 
+router.get("/filtrarDesejo", function (req, res) {
+    livro_desejoController.filtrarDesejo(req, res);
+});
+
 module.exports = router;

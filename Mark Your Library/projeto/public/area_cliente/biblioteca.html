@@ -170,6 +170,45 @@
 
 let livrosBiblioteca = [];
 
+fetch("http://localhost:3333/livro_biblioteca/colocarVetor", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        tituloServer: tituloVar,
+        autorServer: autorVar,
+        generoServer: generoVar,
+        statusServer: statusVar,
+        idUsuarioServer: sessionStorage.ID_USUARIO
+      }),
+    })
+      .then(function (resposta) {
+        console.log("resposta: ", resposta);
+
+        if (resposta.ok) {
+          cardErroCadastro.style.display = "block";
+
+          livrosBiblioteca.push({
+            "Titulo": colocarVetor.titulo,
+            "Autor": colocarVetor.autor,
+            "Genero": colocarVetor.genero,
+            "Status": colocarVetor.status
+          })
+
+          console.log("Inserção no vetor realizado com sucesso!");
+
+        } else {
+          throw "Houve um erro ao tentar realizar a inserção no vetor!";
+        }
+      })
+      .catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+        finalizarAguardar();
+      });
+
+    return false;
+
   function cadastrarLivroBiblioteca() {
 
     var tituloVar = ipt_titulo.value;
@@ -226,12 +265,6 @@ console.log(sessionStorage.ID_USUARIO);
           mensagem_erro_cadastro.innerHTML =
             "Cadastro realizado com sucesso!";
 
-        livrosBiblioteca.push(livro_biblioteca);
-
-        for (let i = 0; i < livrosBiblioteca.length; i++) {
-
-            mensagem += `${livrosBiblioteca[i].Titulo} - ${livrosBiblioteca[i].Autor}<br> Gênero: ${livrosBiblioteca[i].Genero}`;
-        }
           limparFormulario();
           finalizarAguardar();
 
@@ -306,7 +339,7 @@ function filtrarBiblioteca() {
 
   var generoFiltroVar = sel_genero_fil.value;
   var statusFiltroVar = sel_status_fil.value;
-
+  var mensagem = '';
 
       fetch("http://localhost:3333/livro_biblioteca/filtrarBiblioteca", {
       method: "GET",
@@ -329,7 +362,7 @@ function filtrarBiblioteca() {
 
           for (let i = 0; i < livros.length; i++) {
 
-            mensagem += `${livrosDesejo[i].Titulo} | <b>Escrito por:</b> ${livrosDesejo[i].Autor}<br><b>Genero:</b> ${livrosDesejo[i].Genero}<br><br>`;
+            mensagem += `${livrosDesejo[i].titulo} | <b>Escrito por:</b> ${livrosBiblioteca[i].autor}<br><b>Genero:</b> ${livrosBiblioteca[i].nome} <br>${livrosBiblioteca[i].status}<br><br>`;
 
           }
 

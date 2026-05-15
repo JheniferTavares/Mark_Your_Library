@@ -10,6 +10,15 @@ function cadastrarLivroBiblioteca(titulo, autor, genero, status, idUsuario) {
     return database.executar(instrucaoSql);
 }
 
+function colocarVetor(titulo, autor, genero, status, idUsuario) {
+    var instrucaoSql = `
+        SELECT * FROM livro_biblioteca;
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+
+    return database.executar(instrucaoSql);
+}
+
 function apagarLivroBiblioteca(titulo, autor, idUsuario) {
 
     var instrucaoSql = `
@@ -23,6 +32,7 @@ function apagarLivroBiblioteca(titulo, autor, idUsuario) {
 
 module.exports = {
     cadastrarLivroBiblioteca,
+    colocarVetor,
     apagarLivroBiblioteca
 };
 

@@ -28,6 +28,7 @@ CREATE TABLE livro_biblioteca (
     id_livro_biblioteca INT PRIMARY KEY AUTO_INCREMENT,
     titulo VARCHAR(50) NOT NULL,
     autor VARCHAR(50),
+    capa_img VARCHAR(500),
     status VARCHAR(20),
     CONSTRAINT chk_status 
         CHECK (status IN ('quero_ler', 'lendo', 'lido')),
@@ -44,7 +45,8 @@ CREATE TABLE livro_desejo (
     id_livro_desejo INT PRIMARY KEY AUTO_INCREMENT,
     titulo VARCHAR(50) NOT NULL,
     autor VARCHAR(50),
-    historico_cadastro_biblioteca DATE DEFAULT (CURRENT_DATE),
+    capa_img VARCHAR(500),
+    historico_cadastro_desejo DATE DEFAULT (CURRENT_DATE),
     fk_genero INT,
     fk_usuario INT,
     FOREIGN KEY (fk_genero)

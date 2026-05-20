@@ -13,4 +13,12 @@ router.delete("/apagarLivroBiblioteca", function (req, res) {
     livro_bibliotecaController.apagarLivroBiblioteca(req, res);
 });
 
+router.post("/filtrarBiblioteca", function (req, res) {
+    livro_bibliotecaController.filtrarBiblioteca(req, res);
+});
+
+router.get("/colocarVetor", function (req, res) {
+    livro_bibliotecaController.colocarVetor(req, res);
+});
+
 module.exports = router;

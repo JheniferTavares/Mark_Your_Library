@@ -46,12 +46,10 @@ function autenticar(req, res) {
 }
 
 function cadastrar(req, res) {
-    // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
     var nome = req.body.nomeServer;
     var email = req.body.emailServer;
     var senha = req.body.senhaServer;
 
-    // Validações dos valores
     if (nome == undefined) {
         res.status(400).send("Seu nome está indefinido!");
     } else if (email == undefined) {

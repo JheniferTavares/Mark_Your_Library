@@ -53,8 +53,8 @@ body {
 }
 
 .header {
-    margin: 0px;
-    background-color: #D9D9D9;
+  margin: 0px;
+  background-color: #D9D9D9;
 }
 
 .header {
@@ -101,6 +101,8 @@ body {
   gap: 20;
 }
 
+
+
 /* BANNER */
 
 .banner_titulo {
@@ -109,15 +111,15 @@ body {
 }
 
 .banner_home {
-    height: 300px;
-    background-image: url("../assets/banner/home.png");
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-    border-bottom: 30px solid black;
+  height: 300px;
+  background-image: url("../assets/banner/home.png");
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  border-bottom: 30px solid black;
 }
 
 .banner_home .container {
@@ -127,15 +129,15 @@ body {
 }
 
 .banner_biblioteca {
-    height: 300px;
-    background-image: url("../assets/banner/biblioteca.png");
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-    border-bottom: 30px solid black;
+  height: 300px;
+  background-image: url("../assets/banner/biblioteca.png");
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  border-bottom: 30px solid black;
 }
 
 .banner_biblioteca .container {
@@ -145,15 +147,15 @@ body {
 }
 
 .banner_desejo {
-    height: 300px;
-    background-image: url("../assets/banner/desejo.png");
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-    border-bottom: 30px solid black;
+  height: 300px;
+  background-image: url("../assets/banner/desejo.png");
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  border-bottom: 30px solid black;
 }
 
 .banner_desejo .container {
@@ -163,15 +165,15 @@ body {
 }
 
 .banner_retrospectiva {
-    height: 300px;
-    background-image: url("../assets/banner/retrospectiva.png");
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-    border-bottom: 30px solid black;
+  height: 300px;
+  background-image: url("../assets/banner/retrospectiva.png");
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  border-bottom: 30px solid black;
 }
 
 .banner_retrospectiva .container {
@@ -192,12 +194,8 @@ body {
   justify-content: center;
 }
 
-.box img {
-  width: 170px;
-}
-
 .social h2 {
-  font-family:"Alumni Sans", sans-serif;
+  font-family: "Alumni Sans", sans-serif;
   font-size: 70px;
 }
 
@@ -211,15 +209,10 @@ body {
   justify-content: space-around;
   width: 100%;
   padding: 20px 0;
-  gap: 70px;
 }
 
 .social p {
   text-align: center;
-}
-
-.social.container.boxes .box_retro {
-  gap: 70;
 }
 
 .box {
@@ -227,6 +220,12 @@ body {
   flex-direction: column;
   align-items: center;
 }
+
+.navbar img {
+  width: 50px;
+  height: 50px;
+}
+
 
 /* TEXTOS BIBLIOTECA/DESEJO */
 
@@ -240,23 +239,23 @@ body {
   justify-content: center;
 }
 
-.box img {
-  width: 170px;
-}
-
 .registrado h2 {
   font-size: 50px;
 }
 
-.registrado .container .boxes {
+.registrado .container {
   display: flex;
   justify-content: space-around;
   width: 100%;
-  padding: 30px 0;
 }
 
 .registrado p {
   text-align: center;
+}
+
+.boxes {
+  display: flex;
+  justify-content: flex-start;
 }
 
 .box {
@@ -272,7 +271,7 @@ body {
   justify-content: center;
   align-items: center;
   gap: 30px;
-  margin-top: 50px;  
+  margin-top: 50px;
 }
 
 .card {
@@ -339,8 +338,9 @@ body {
   font-size: 18px;
   color: #fff;
   background-color: #2F2222;
-  width: 120px;
-  height: 30px;
+  width: fit-content 12px;
+  height: fit-content 12px;
+  padding: 12px 25px;
   align-self: center;
   margin-top: 20px;
 }
@@ -356,21 +356,26 @@ body {
 }
 
 #div_erros_login {
-  display: none
+  display: none;
+  width: fit-content;
+  height: fit-content;
 }
 
 /* FORMULARIO */
 
-.alerta_erro{
+.alerta_erro {
   display: flex;
   justify-content: flex-end;
+  width: fit-content;
+  height: fit-content;
 }
 
 .card_erro {
   display: none;
   background-color: #fff;
   color: black;
-  width: 230px;
+  width: fit-content;
+  height: fit-content;
   position: fixed;
   border-radius: 4px;
   border: #2F2222 3px solid;
@@ -378,13 +383,14 @@ body {
   margin-right: 10%;
 }
 
-.card_erro #mensagem_erro{
-  font-weight: 500;
-  font-size: 20px;
+.card_erro #mensagem_erro {
+  width: fit-content;
+  height: fit-content;
 }
-.card_erro #mensagem_erro_cadastro{
-  font-weight: 500;
-  font-size: 20px;
+
+.card_erro #mensagem_erro_cadastro {
+  width: fit-content;
+  height: fit-content;
 }
 
 .formulario .tipo_campo {
@@ -409,8 +415,8 @@ input {
   font-family: "Barlow", sans-serif;
   border: 0;
   border-radius: 5px;
-  font-weight: 600;
-  font-size: 18px;
+  width: fit-content;
+  height: fit-content;
   padding: 10px 15px;
   color: white;
   background-color: #2F2222;
@@ -470,9 +476,23 @@ input {
 }
 
 @keyframes bell {
-  0%   {transform: rotate(25deg)}
-  25%  {transform: rotate(-25deg)}
-  50%  {transform: rotate(25deg)}
-  75%  {transform: rotate(-25deg)}
-  100% {transform: rotate(25deg)}
+  0% {
+    transform: rotate(25deg)
+  }
+
+  25% {
+    transform: rotate(-25deg)
+  }
+
+  50% {
+    transform: rotate(25deg)
+  }
+
+  75% {
+    transform: rotate(-25deg)
+  }
+
+  100% {
+    transform: rotate(25deg)
+  }
 }

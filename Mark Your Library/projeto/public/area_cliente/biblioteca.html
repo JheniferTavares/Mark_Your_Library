@@ -87,10 +87,6 @@
           </div>
           <button class="botao" onclick="cadastrarLivroBiblioteca()">Cadastrar</button>
         </div>
-        <div id="div_aguardar" class="loading-div">
-          <img src="../assets/carregando.gif" id="loading-gif" />
-        </div>
-
         <div id="div_erros_login"></div>
       </div>
     </div>
@@ -131,7 +127,8 @@
       <div class="container">
         <div class="boxes">
           <div class="box">
-            <div class="filtro">
+       
+            <div class="filtro">                  <center> 
               <select id="sel_genero_fil">
                 <option value="" disabled selected>Gênero</option>
                 <option value="">---</option>
@@ -152,10 +149,23 @@
                 <option value="lendo">Lendo</option>
                 <option value="lido">Já li</option>                
               </select>
-              <button onclick="filtrarBiblioteca()">Exibir biblioteca</button>
-            </div>
+                  <br>
+                <div class="campo">
+                  <p><b>Pesquisar titulo:</b></p>
+                  <input class="filtro" type="text" id="ipt_pesquisa">
+                </div>
+                <div class="campo">
+                  <p><b>Pesquisar autor:</b></p>
+                  <input class="filtro" type="text" id="ipt_pesquisa_autor">
+                </div>
+                  <br>
+
+                  <button class="botao" onclick="filtrarBiblioteca()">Exibir biblioteca</button>
+                 
+                </div> </center>
             <h2>Meus livros:</h2>
             <div id="listaBiblioteca" class="mensagem_lista"></div>
+         
           </div>
         </div>
       </div>
@@ -168,46 +178,50 @@
 
 <script>
 
-let livrosBiblioteca = [];
+let livrosBiblioteca = []
 
-fetch("http://localhost:3333/livro_biblioteca/colocarVetor", {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        tituloServer: tituloVar,
-        autorServer: autorVar,
-        generoServer: generoVar,
-        statusServer: statusVar,
-        idUsuarioServer: sessionStorage.ID_USUARIO
-      }),
-    })
-      .then(function (resposta) {
-        console.log("resposta: ", resposta);
+function colocarVetor(){
+  fetch("http://localhost:3333/livro_biblioteca/colocarVetor", {
+    method: "GET",})
+    .then(function(resposta) {
+      
+      if (resposta.ok) {
+        return resposta.json();
+      } else {
+        throw "Erro ao buscar livros";
+      }
 
-        if (resposta.ok) {
-          cardErroCadastro.style.display = "block";
+      console.log("resposta: ", resposta);
+  })
 
-          livrosBiblioteca.push({
-            "Titulo": colocarVetor.titulo,
-            "Autor": colocarVetor.autor,
-            "Genero": colocarVetor.genero,
-            "Status": colocarVetor.status
-          })
+    .then(function(resultado) {
+    livrosBiblioteca = [];
 
-          console.log("Inserção no vetor realizado com sucesso!");
+    for (let i = 0; i < resultado.length; i++) {
 
-        } else {
-          throw "Houve um erro ao tentar realizar a inserção no vetor!";
-        }
-      })
+      livrosBiblioteca.push({
+        Titulo: resultado[i].titulo,
+        Autor: resultado[i].autor,
+        Genero: resultado[i].nome,
+        Status: resultado[i].status
+      });
+
+    console.log(livrosBiblioteca);
+    console.log("Inserção no vetor realizado com sucesso!");
+    }
+  })
+
       .catch(function (resposta) {
         console.log(`#ERRO: ${resposta}`);
         finalizarAguardar();
       });
-
+    
     return false;
+}
+
+  colocarVetor();
+  console.log(livrosBiblioteca);
+    
 
   function cadastrarLivroBiblioteca() {
 
@@ -278,7 +292,6 @@ console.log(sessionStorage.ID_USUARIO);
       });
 
     return false;
-
   }
 
   function retiradaBiblioteca() {
@@ -339,19 +352,24 @@ function filtrarBiblioteca() {
 
   var generoFiltroVar = sel_genero_fil.value;
   var statusFiltroVar = sel_status_fil.value;
+  var pesquisaFiltroVar = ipt_pesquisa.value;
+  var autorFiltroVar = ipt_pesquisa_autor.value;
   var mensagem = '';
 
-      fetch("http://localhost:3333/livro_biblioteca/filtrarBiblioteca", {
-      method: "GET",
+  if (livrosBiblioteca.length > 0) {
+
+    fetch("http://localhost:3333/livro_biblioteca/filtrarBiblioteca", {
+      method: "POST",
       headers: {
         "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        tituloServer: tituloVar,
-        autorServer: autorVar,
-        generoServer: generoFiltroVar,
-        statusServer: statusFiltroVar,
-        idUsuarioServer: sessionStorage.ID_USUARIO
+      }
+      ,body: JSON.stringify({
+       generoServer: generoFiltroVar,
+       pesquisaServer: pesquisaFiltroVar,
+       statusServer: statusFiltroVar,
+       autorFiltroServer: autorFiltroVar,
+
+      idUsuarioServer: sessionStorage.ID_USUARIO
       }),
     })
       .then(function (resposta) {
@@ -360,25 +378,31 @@ function filtrarBiblioteca() {
         if (resposta.ok) {
           cardErroCadastro.style.display = "block";
 
-          for (let i = 0; i < livros.length; i++) {
+          for (let i = 0; i < livrosBiblioteca.length; i++) {
 
-            mensagem += `${livrosDesejo[i].titulo} | <b>Escrito por:</b> ${livrosBiblioteca[i].autor}<br><b>Genero:</b> ${livrosBiblioteca[i].nome} <br>${livrosBiblioteca[i].status}<br><br>`;
+            mensagem += `${livrosBiblioteca[i].Titulo} | <b>Escrito por:</b> ${livrosBiblioteca[i].Autor}<br><b>Genero:</b> ${livrosBiblioteca[i].Genero} <br> <b>STATUS:</b> ${livrosBiblioteca[i].Status}<br><br>`;
 
           }
 
-          limparFormulario();
-          finalizarAguardar();
+          listaBiblioteca.innerHTML = mensagem
+
         } else {
           throw "Houve um erro ao tentar filtrar o livro";
         }
-      })
+
+          limparFormulario();
+          finalizarAguardar();
+        })
       .catch(function (resposta) {
         console.log(`#ERRO: ${resposta}`);
         finalizarAguardar();
       });
 
-    return false;
-}
+    return false;}
+    else {
+      listaBiblioteca.innerHTML = '<b>Não tem livros cadastrados</b>';
+    }
+    }
 
 function sumirMensagem() {
     cardErroCadastro.style.display = "none";
